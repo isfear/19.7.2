@@ -201,7 +201,7 @@ def test_add_pet_with_numbers_in_variable_animal_type(name='Муся', animal_ty
     status, result = pf.add_new_pet_simple(api_key, name, animal_type, age)
 
     assert status == 200
-    assert result['animal_type'] == '111111111'
+    assert result['animal_type'] == '7857987'
 
 #9
 def test_add_new_info_pet_with_empty_data(name='', animal_type='',
