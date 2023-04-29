@@ -1,4 +1,3 @@
-"""Модуль 19"""
 import json
 
 import requests
