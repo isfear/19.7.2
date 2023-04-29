@@ -29,7 +29,7 @@ def test_get_all_pets_with_valid_key(filter=''):
     assert len(result['pets']) > 0
 
 
-def test_add_new_pet_with_valid_data(name='Барбоскин', animal_type='двортерьер',
+def test_add_new_pet_with_valid_data(name='Кузьма', animal_type='звезда',
                                      age='4', pet_photo='images/cat1.jpg'):
     """Проверяем что можно добавить питомца с корректными данными"""
 
@@ -56,7 +56,7 @@ def test_successful_delete_self_pet():
 
     # Проверяем - если список своих питомцев пустой, то добавляем нового и опять запрашиваем список своих питомцев
     if len(my_pets['pets']) == 0:
-        pf.add_new_pet(auth_key, "Суперкот", "кот", "3", "images/cat1.jpg")
+        pf.add_new_pet(auth_key, "Собакен", "собака", "5", "images/cat1.jpg")
         _, my_pets = pf.get_list_of_pets(auth_key, "my_pets")
 
     # Берём id первого питомца из списка и отправляем запрос на удаление
@@ -71,7 +71,7 @@ def test_successful_delete_self_pet():
     assert pet_id not in my_pets.values()
 
 
-def test_successful_update_self_pet_info(name='Кузя', animal_type='Котенок', age=3):
+def test_successful_update_self_pet_info(name='Лапа', animal_type='собачка', age=1):
     """Проверяем возможность обновления информации о питомце"""
 
     # Получаем ключ auth_key и список своих питомцев
@@ -91,7 +91,7 @@ def test_successful_update_self_pet_info(name='Кузя', animal_type='Коте�
 
 #1
 
-def test_get_api_key_with_wrong_email(email=valid_email, password='922567'):
+def test_get_api_key_with_wrong_email(email=valid_email, password='11111'):
     """Проверяем при введении неверного пароля выходит результат 403 """
 
     # Отправляем запрос и сохраняем полученный ответ с кодом статуса в status, а текст ответа в result
@@ -103,7 +103,7 @@ def test_get_api_key_with_wrong_email(email=valid_email, password='922567'):
 
 
 #2
-def test_get_api_key_with_wrong_email(email='romashka-8081@list.ru', password=valid_password):
+def test_get_api_key_with_wrong_email(email='kyky@mail.ru', password=valid_password):
     """Проверяем при введении неверного email выходит результат 403"""
 
     # Отправляем запрос и сохраняем полученный ответ с кодом статуса в status, а текст ответа в result
@@ -114,7 +114,7 @@ def test_get_api_key_with_wrong_email(email='romashka-8081@list.ru', password=va
     assert "key" not in result
 
 #3
-def test_add_new_pet_without_photo(name='Jack_dog1', animal_type='лабрадор', age='3'):
+def test_add_new_pet_without_photo(name='Жорик', animal_type='терьер', age='8'):
     """Проверяем можно ли добавить питомца в упрощенном формате с корректными данными"""
 
     #     Получаем api key  и сохраняем в переменную auth_key
@@ -126,7 +126,7 @@ def test_add_new_pet_without_photo(name='Jack_dog1', animal_type='лабрадо
     assert result['name'] == name
 
 #4 Статус запроса при некорректным вводе возвраста питомца должна возвращать 400, а  возвращает 200
-def test_update_self_pet_invalid_age(name='Алекс', animal_type='Котенок', age=-55555):
+def test_update_self_pet_invalid_age(name='Кит', animal_type='Еж', age=-111):
     """Проверяем возможность обновления информации о питомце с некорректным возрастом"""
 
     # Получаем ключ auth_key и список своих питомцев
@@ -145,7 +145,7 @@ def test_update_self_pet_invalid_age(name='Алекс', animal_type='Котен�
     assert status == 200 #тест проходит
 
 #5
-def test_put_api_pet_invalid_pet_id(name='Барсик', animal_type='кот', age=10, pet_id='415635aliya'):
+def test_put_api_pet_invalid_pet_id(name='Рикусик', animal_type='пес', age=10, pet_id='1234myr'):
     """Проверяем, что можно обновить питомца с недействующим id"""
 
     # Получаем ключ auth_key
@@ -157,8 +157,8 @@ def test_put_api_pet_invalid_pet_id(name='Барсик', animal_type='кот', a
     assert status == 400
 
 #6
-def test_add_pet_with_a_lot_of_words_in_variable_animal_type(name='Jack_dog1', age='3',
-                                  animal_type='лабрадор самая добрая собака в мире'):
+def test_add_pet_with_a_lot_of_words_in_variable_animal_type(name='Жорик', age='8',
+                                  animal_type='терьер самое опасное животное'):
     """ Проверяем, что возможно добавления питомца с названием породы которого превышает 7 слова
     Тест не будет пройден если питомец будет добавлен на сайт с названием породы состоящим более 7 слов.'"""
 
